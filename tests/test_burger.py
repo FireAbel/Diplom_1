@@ -41,7 +41,9 @@ class TestBurger:
         burger = Burger()
         burger.set_buns(mock_bun)
         burger.add_ingredient(mock_ingredient_filling)
-        assert mock_bun.get_name() in burger.get_receipt()
+        expected_bun_line = f'(==== {mock_bun.get_name()} ====)'
+        receipt_lines = burger.get_receipt().split('\n')
+        assert receipt_lines[0] == expected_bun_line
 
     def test_get_receipt_contains_ingredient_name(self, mock_bun, mock_ingredient_filling):
         burger = Burger()
